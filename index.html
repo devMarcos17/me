@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcos Lucas | Desenvolvedor PHP</title>
+<meta name="description" content="Portfólio de Marcos Lucas, estudante de Engenharia de Software e desenvolvedor backend PHP.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07090c;--card:#0d1116;--line:#1b2128;--txt:#e8eaed;--mut:#8b929c;--acc:#7dd3fc;--acc2:#a78bfa;--ok:#4ade80}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--acc);color:#07090c}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+
+/* fundo e brilho do mouse */
+.grid-bg{position:fixed;inset:0;z-index:-2;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:60px 60px;opacity:.28;mask-image:radial-gradient(ellipse at 50% 20%,#000 20%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 50% 20%,#000 20%,transparent 75%)}
+.orb{position:fixed;border-radius:50%;filter:blur(110px);z-index:-1;opacity:.22;animation:float 16s ease-in-out infinite}
+.orb.a{width:480px;height:480px;background:var(--acc);top:-120px;left:-100px}
+.orb.b{width:420px;height:420px;background:var(--acc2);bottom:-120px;right:-80px;animation-delay:-8s}
+@keyframes float{50%{transform:translate(60px,40px) scale(1.12)}}
+#glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,rgba(125,211,252,.10),transparent 65%);transform:translate(-50%,-50%);left:50%;top:30%}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));z-index:200}
+
+/* header */
+header{position:fixed;top:0;left:0;width:100%;z-index:100;background:rgba(7,9,12,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{max-width:1100px;margin:auto;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 25px}
+.logo{font-size:20px;font-weight:800;letter-spacing:-1px}
+.logo span{color:var(--acc)}
+.nav-links{display:flex;gap:6px;list-style:none}
+.nav-links a{color:var(--mut);font-size:14px;padding:6px 12px;border-radius:999px;transition:.25s}
+.nav-links a:hover,.nav-links a.active{color:#fff;background:#151a21}
+
+/* hero */
+.hero{min-height:100vh;max-width:1100px;margin:auto;padding:150px 25px 90px;display:flex;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--acc);font-size:13px;font-weight:600;margin-bottom:22px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(13,17,22,.7)}
+.status{width:8px;height:8px;background:var(--ok);border-radius:50%;position:relative}
+.status::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--ok);animation:ping 1.8s infinite}
+@keyframes ping{to{transform:scale(3.2);opacity:0}}
+.hero h1{font-size:clamp(52px,9vw,96px);line-height:.96;letter-spacing:-5px;margin-bottom:22px}
+.grad{background:linear-gradient(110deg,var(--acc),var(--acc2),var(--acc));background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:220% center}}
+.typed{font-family:"JetBrains Mono",monospace;font-size:clamp(16px,2.4vw,22px);color:#c7ccd3;margin-bottom:22px;min-height:34px}
+.typed i{display:inline-block;width:2px;height:1.1em;background:var(--acc);margin-left:3px;vertical-align:-3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero p{max-width:620px;color:var(--mut);font-size:18px;line-height:1.8;margin-bottom:36px}
+.hero-buttons{display:flex;gap:14px;flex-wrap:wrap}
+.btn{position:relative;padding:14px 24px;border-radius:10px;font-size:14px;font-weight:600;transition:.25s;display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;border:none;font-family:inherit}
+.btn-primary{background:var(--txt);color:#07090c}
+.btn-primary:hover{background:#fff;transform:translateY(-3px);box-shadow:0 10px 30px rgba(125,211,252,.25)}
+.btn-secondary{border:1px solid #2a3139;color:#d6d9dd;background:transparent}
+.btn-secondary:hover{border-color:var(--acc);color:var(--acc);transform:translateY(-3px)}
+.btn-whatsapp{border:1px solid #263b31;background:#102019;color:#86efac}
+.btn-whatsapp:hover{border-color:var(--ok);background:#14291f;color:#bbf7d0;transform:translateY(-3px);box-shadow:0 10px 30px rgba(74,222,128,.18)}
+.stats{display:flex;gap:40px;margin-top:56px;flex-wrap:wrap}
+.stat strong{display:block;font-size:30px;letter-spacing:-1px}
+.stat span{color:var(--mut);font-size:13px}
+
+/* seções */
+section{max-width:1100px;margin:auto;padding:100px 25px}
+.section-header{margin-bottom:50px}
+.section-number{color:var(--acc);font-family:"JetBrains Mono",monospace;font-size:13px;margin-bottom:10px}
+.section-header h2{font-size:clamp(30px,5vw,42px);letter-spacing:-2px}
+.section-header p{color:var(--mut);max-width:600px;margin-top:12px}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s ease}
+.reveal.show{opacity:1;transform:none}
+
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:70px}
+.about-text p{color:#a7adb5;margin-bottom:18px}
+.about-text strong{color:#fff}
+.info-list{border-left:1px solid var(--line);padding-left:30px}
+.info{margin-bottom:24px;transition:.25s}
+.info:hover{transform:translateX(6px)}
+.info small{display:block;color:#69717b;font-size:12px;letter-spacing:1px;margin-bottom:3px}
+.info strong{font-size:15px}
+
+/* cards com spotlight */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.skill,.project{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .3s,border-color .3s}
+.skill::before,.project::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(125,211,252,.13),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.skill:hover::before,.project:hover::before{opacity:1}
+.skill:hover,.project:hover{border-color:#37424e}
+.skill{padding:24px}
+.skill:hover{transform:translateY(-4px)}
+.skill.wide{grid-column:1/-1}
+.skill code{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--acc);background:#141a21;padding:2px 6px;border-radius:5px}
+.skill h3{font-size:16px;margin-bottom:8px}
+.skill p{color:var(--mut);font-size:13px}
+
+.timeline{position:relative;padding-left:28px;border-left:1px solid var(--line)}
+.qualification{position:relative;display:grid;grid-template-columns:150px 1fr;padding:0 0 38px}
+.qualification:last-child{padding-bottom:0}
+.qualification::before{content:"";position:absolute;left:-34px;top:7px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--acc);transition:.3s}
+.qualification:hover::before{background:var(--acc);box-shadow:0 0 14px var(--acc)}
+.qualification-date{color:#69717b;font-size:13px;font-family:"JetBrains Mono",monospace;padding-top:3px}
+.qualification h3{font-size:18px;margin-bottom:6px}
+.qualification p{color:var(--mut);font-size:14px;max-width:560px}
+
+/* projetos */
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.project{padding:28px;display:flex;flex-direction:column;min-height:280px;transform-style:preserve-3d;will-change:transform}
+.project:nth-child(3){grid-column:1/-1;min-height:230px}
+.project-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;position:relative}
+.project-icon{width:46px;height:46px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(135deg,#171d25,#10151b);border:1px solid #232b34;color:var(--acc);font-weight:700;font-size:15px;transition:.3s}
+.project:hover .project-icon{transform:rotate(-6deg) scale(1.08);border-color:var(--acc)}
+.project-icon svg{width:24px;height:24px}
+.github-link{color:#747c86;font-size:13px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;transition:.25s;position:relative}
+.github-link:hover{color:var(--acc);border-color:var(--acc)}
+.project h3{font-size:21px;margin-bottom:10px;position:relative}
+.project p{color:var(--mut);font-size:14px;margin-bottom:24px;position:relative;max-width:640px}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;position:relative}
+.tag{padding:5px 10px;border-radius:6px;background:#141a21;border:1px solid #1d242c;color:#9aa1ab;font-size:11px;font-weight:600;transition:.2s}
+.project:hover .tag{border-color:#2b3641;color:#cfd5dc}
+
+.github-box{margin-top:26px;padding:42px;border:1px solid #232a32;border-radius:14px;background:linear-gradient(120deg,#0d1217,#0f1320);display:flex;align-items:center;justify-content:space-between;gap:30px}
+.github-box h3{font-size:24px;margin-bottom:7px}
+.github-box p{color:var(--mut);font-size:14px}
+
+.contact{text-align:center;padding-top:130px;padding-bottom:130px}
+.contact h2{font-size:clamp(38px,6vw,56px);letter-spacing:-3px;margin-bottom:15px}
+.contact p{color:var(--mut);margin:0 auto 32px;max-width:520px}
+.contact-links{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
+footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:#555d66;font-size:12px}
+
+@media(max-width:750px){
+.nav-links{display:none}
+.hero{padding-top:120px}
+.hero h1{letter-spacing:-3px}
+.hero p{font-size:16px}
+.about-grid{grid-template-columns:1fr;gap:40px}
+.skills-grid,.projects{grid-template-columns:1fr}
+.skill.wide{grid-column:auto}
+.project:nth-child(3){grid-column:auto}
+.qualification{grid-template-columns:1fr;gap:6px}
+.github-box{flex-direction:column;align-items:flex-start;padding:30px}
+.stats{gap:28px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div class="grid-bg"></div>
+<div class="orb a"></div>
+<div class="orb b"></div>
+<div id="glow"></div>
+
+<header>
+  <nav class="nav">
+    <a href="#" class="logo">Marcos<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a href="#qualificacoes">Qualificações</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="eyebrow"><span class="status"></span>Disponível para oportunidades</div>
+      <h1>Marcos<br><span class="grad">Lucas.</span></h1>
+      <div class="typed"><span id="typed"></span><i></i></div>
+      <p>Estudante de Engenharia de Software e desenvolvedor backend focado em PHP e Laravel. Gosto de transformar problemas em sistemas organizados, funcionais e fáceis de manter.</p>
+      <div class="hero-buttons">
+        <a href="#projetos" class="btn btn-primary">Ver meus projetos</a>
+        <a href="https://github.com/devMarcos17" target="_blank" rel="noopener" class="btn btn-secondary">GitHub ↗</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong data-count="3">0</strong><span>projetos no portfólio</span></div>
+        <div class="stat"><strong data-count="19">0</strong><span>anos de idade</span></div>
+        <div class="stat"><strong data-count="10">0</strong><span>tecnologias e conceitos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="section-header reveal">
+      <div class="section-number">01 / sobre</div>
+      <h2>Um pouco sobre mim</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>Meu nome é <strong>Marcos Lucas</strong>, tenho <strong>19 anos</strong> e curso <strong>Engenharia de Software</strong>.</p>
+        <p>Atualmente tenho direcionado meus estudos para o desenvolvimento backend, principalmente utilizando <strong>PHP e Laravel</strong>.</p>
+        <p>Meu objetivo é evoluir constantemente através da prática, construindo sistemas reais e entendendo não apenas como escrever código, mas também como organizar e manter um projeto.</p>
+        <p>Tenho interesse em arquitetura de software, APIs, banco de dados, testes automatizados e boas práticas de desenvolvimento.</p>
+      </div>
+      <div class="info-list reveal">
+        <div class="info"><small>Nome</small><strong>Marcos Lucas</strong></div>
+        <div class="info"><small>Idade</small><strong>19 anos</strong></div>
+        <div class="info"><small>Formação</small><strong>Engenharia de Software</strong></div>
+        <div class="info"><small>Área</small><strong>Desenvolvimento Backend</strong></div>
+        <div class="info"><small>Principal stack</small><strong>PHP + Laravel</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="habilidades">
+    <div class="section-header reveal">
+      <div class="section-number">02 / habilidades</div>
+      <h2>O que eu sei fazer</h2>
+      <p>Tecnologias e conceitos que venho utilizando nos meus estudos e projetos.</p>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill"><h3>PHP</h3><p>POO, boas práticas, sessões, validações, manipulação de dados e desenvolvimento web.</p></div>
+      <div class="skill"><h3>Laravel</h3><p>Controllers, Services, Middleware, Models, validação, autenticação e APIs, com ambiente em Docker.</p></div>
+      <div class="skill"><h3>APIs REST</h3><p>Desenvolvimento e consumo de APIs utilizando JSON, autenticação e rotas organizadas.</p></div>
+      <div class="skill"><h3>Banco de Dados</h3><p>SQLite, MySQL e PostgreSQL, consultas SQL, relacionamentos e persistência de dados.</p></div>
+      <div class="skill"><h3>Testes</h3><p>PHPUnit e testes de funcionalidades para garantir que as regras do sistema continuem funcionando.</p></div>
+      <div class="skill"><h3>Git &amp; GitHub</h3><p>Versionamento de código, branches, commits, repositórios e organização de projetos.</p></div>
+      <div class="skill"><h3>POO</h3><p>Classes, objetos, encapsulamento, herança, abstração e organização de responsabilidades.</p></div>
+      <div class="skill"><h3>Arquitetura</h3><p>Separação de responsabilidades, Services, Controllers e organização de aplicações.</p></div>
+      <div class="skill"><h3>Frontend</h3><p>HTML, CSS e JavaScript para criação de interfaces e integração com APIs, com container próprio em Docker.</p></div>
+      <div class="skill wide"><h3>Docker &amp; Docker Compose</h3><p>Containerização do backend e do frontend com Dockerfile e arquivos <code>docker-compose.yml</code> (YML), para subir a aplicação inteira, banco de dados incluso, com um único comando e manter o mesmo ambiente em qualquer máquina.</p><div class="tags" style="margin-top:16px"><span class="tag">Dockerfile</span><span class="tag">docker-compose.yml</span><span class="tag">Backend</span><span class="tag">Frontend</span><span class="tag">YAML</span></div></div>
+    </div>
+  </section>
+
+  <section id="qualificacoes">
+    <div class="section-header reveal">
+      <div class="section-number">03 / qualificações</div>
+      <h2>Minha formação</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="qualification">
+        <div class="qualification-date">atualmente</div>
+        <div><h3>Engenharia de Software</h3><p>Formação voltada para desenvolvimento de software, programação, engenharia de requisitos, banco de dados e arquitetura de sistemas.</p></div>
+      </div>
+      <div class="qualification">
+        <div class="qualification-date">prática</div>
+        <div><h3>Desenvolvimento de aplicações web</h3><p>Desenvolvimento de projetos próprios utilizando PHP, Laravel, APIs REST, bancos de dados e autenticação.</p></div>
+      </div>
+      <div class="qualification">
+        <div class="qualification-date">prática</div>
+        <div><h3>Testes automatizados</h3><p>Experiência prática com PHPUnit e testes de APIs, validações e regras de negócio.</p></div>
+      </div>
+      <div class="qualification">
+        <div class="qualification-date">foco</div>
+        <div><h3>Backend PHP</h3><p>Direcionamento profissional para desenvolvimento backend utilizando PHP e Laravel.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <div class="section-header reveal">
+      <div class="section-number">04 / projetos</div>
+      <h2>Projetos</h2>
+      <p>Projetos que venho desenvolvendo para colocar meus conhecimentos em prática.</p>
+    </div>
+    <div class="projects reveal">
+      <article class="project tilt">
+        <div class="project-top">
+          <div class="project-icon">$</div>
+          <a href="https://github.com/devMarcos17/FinacesHelp" target="_blank" rel="noopener" class="github-link">GitHub ↗</a>
+        </div>
+        <h3>FinanceHelp</h3>
+        <p>Sistema de gerenciamento financeiro pessoal, desenvolvido com Laravel, permitindo controlar receitas, despesas, metas e investimentos.</p>
+        <div class="tags"><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">REST API</span><span class="tag">JWT</span><span class="tag">SQLite</span><span class="tag">PHPUnit</span></div>
+      </article>
+
+      <article class="project tilt">
+        <div class="project-top">
+          <div class="project-icon">API</div>
+          <a href="https://github.com/devMarcos17/user-api" target="_blank" rel="noopener" class="github-link">GitHub ↗</a>
+        </div>
+        <h3>user-api</h3>
+        <p>CRUD de usuários desenvolvido através de uma API, com operações para criação, consulta, atualização e exclusão de registros.</p>
+        <div class="tags"><span class="tag">PHP</span><span class="tag">API REST</span><span class="tag">CRUD</span><span class="tag">SQLite</span></div>
+      </article>
+
+      <article class="project tilt">
+        <div class="project-top">
+          <div class="project-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17H3v-5l2-5a2 2 0 0 1 1.9-1.3h10.2A2 2 0 0 1 19 7l2 5v5h-2"/><path d="M3 12h18"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg>
+          </div>
+          <a href="https://github.com/devMarcos17/Rents-Cars" target="_blank" rel="noopener" class="github-link">GitHub ↗</a>
+        </div>
+        <h3>RentsCar</h3>
+        <p>Sistema de gerenciamento de aluguel de veículos, criado para praticar desenvolvimento web, organização de código e modelagem de banco de dados.</p>
+        <div class="tags"><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Database</span></div>
+      </article>
+    </div>
+
+    <div class="github-box reveal">
+      <div>
+        <h3>Mais projetos no GitHub</h3>
+        <p>Confira meu código, projetos em desenvolvimento e minha evolução como desenvolvedor.</p>
+      </div>
+      <a href="https://github.com/devMarcos17" target="_blank" rel="noopener" class="btn btn-primary">Acessar GitHub ↗</a>
+    </div>
+  </section>
+
+  <section id="contato" class="contact">
+    <div class="reveal">
+      <div class="section-number">05 / contato</div>
+      <h2>Vamos <span class="grad">conversar?</span></h2>
+      <p>Estou aberto a oportunidades de estágio e desenvolvimento profissional na área de tecnologia.</p>
+      <div class="contact-links">
+        <a href="https://github.com/devMarcos17" target="_blank" rel="noopener" class="btn btn-primary">GitHub</a>
+        <a href="#" class="btn btn-secondary" onclick="copiarEmail(event)">Copiar e-mail</a>
+        <a href="https://wa.me/21972305425" target="_blank" rel="noopener" class="btn btn-whatsapp">WhatsApp ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>© <span id="ano"></span> Marcos Lucas. Desenvolvido por mim.</footer>
+
+<script>
+document.getElementById("ano").textContent = new Date().getFullYear();
+
+/* e-mail */
+const email = "diasmarcos846@gmail.com";
+function copiarEmail(e){
+  e.preventDefault();
+  const b = e.currentTarget, t = b.textContent;
+  const ok = () => { b.textContent = "E-mail copiado ✓"; setTimeout(() => b.textContent = t, 2000); };
+  (navigator.clipboard ? navigator.clipboard.writeText(email) : Promise.reject()).then(ok).catch(() => { prompt("Copie o e-mail:", email); });
+}
+
+/* barra de progresso + link ativo */
+const bar = document.getElementById("progress");
+const links = [...document.querySelectorAll(".nav-links a")];
+const secs = links.map(a => document.querySelector(a.getAttribute("href")));
+addEventListener("scroll", () => {
+  const h = document.documentElement;
+  bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + "%";
+  let cur = -1;
+  secs.forEach((s, i) => { if (s && s.getBoundingClientRect().top < innerHeight * .4) cur = i; });
+  links.forEach((a, i) => a.classList.toggle("active", i === cur));
+}, { passive: true });
+
+/* brilho que segue o mouse */
+const glow = document.getElementById("glow");
+addEventListener("mousemove", e => { glow.style.left = e.clientX + "px"; glow.style.top = e.clientY + "px"; });
+
+/* texto digitando */
+const frases = ["Desenvolvedor Backend PHP", "Laravel & APIs REST", "Estudante de Engenharia de Software"];
+const el = document.getElementById("typed");
+let f = 0, c = 0, del = false;
+(function tick(){
+  const txt = frases[f];
+  el.textContent = txt.slice(0, c);
+  if (!del && c === txt.length) { del = true; return setTimeout(tick, 1600); }
+  if (del && c === 0) { del = false; f = (f + 1) % frases.length; }
+  c += del ? -1 : 1;
+  setTimeout(tick, del ? 28 : 65);
+})();
+
+/* revelar ao rolar */
+const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add("show"); io.unobserve(x.target); } }), { threshold: .12 });
+document.querySelectorAll(".reveal").forEach(r => io.observe(r));
+
+/* contadores */
+const co = new IntersectionObserver(es => es.forEach(x => {
+  if (!x.isIntersecting) return;
+  const n = x.target, max = +n.dataset.count; let i = 0;
+  const t = setInterval(() => { n.textContent = ++i; if (i >= max) clearInterval(t); }, 1000 / max / 1.4);
+  co.unobserve(n);
+}), { threshold: 1 });
+document.querySelectorAll("[data-count]").forEach(n => co.observe(n));
+
+/* spotlight nos cards + inclinação 3D nos projetos */
+document.querySelectorAll(".skill,.project").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const r = card.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    card.style.setProperty("--mx", x + "px");
+    card.style.setProperty("--my", y + "px");
+    if (card.classList.contains("tilt") && matchMedia("(hover:hover)").matches) {
+      const rx = ((y / r.height) - .5) * -6, ry = ((x / r.width) - .5) * 6;
+      card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+    }
+  });
+  card.addEventListener("mouseleave", () => { card.style.transform = ""; });
+});
+</script>
+</body>
+</html>
